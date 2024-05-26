@@ -32,7 +32,10 @@ export const POST = async(request)=>{
                 from: process.env.GMAIL,
                 to: email,
                 subject: "OTP from Akdevp",
-                html: `Please verify your Email Address by enter this opt <br /> <strong>${otp}</strong> <br /> This otp will expire in 1 hour`
+                html: `Please verify your Email Address by enter this opt <br /> <strong>${otp}</strong> <br />
+                This otp will expire in 1 hour
+                <a href='https://akdevp.vercel.app/verifyotp/${newUser._id}'>Click Here</a>
+                `
             }
             const saltRound = 10
             const hashedOtp = await bcrypt.hash(otp,saltRound)
