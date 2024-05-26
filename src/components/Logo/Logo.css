@@ -1,0 +1,5 @@
+.logo{
+    padding: 0 4px 6px 4px;
+    border-radius: 8px;
+    background: linear-gradient(to top, rgb(0, 21, 0) , var(--primary));
+}
