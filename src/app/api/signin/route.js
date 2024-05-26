@@ -23,32 +23,8 @@ export const POST = async(request)=>{
                 password:securePassword,
                 isverified: true
             })
-            const user = await newUser.save()  
-            const otp = `${Math.floor(1000+Math.random()*9000)}`
-
-            const mailOptions = {
-                from: process.env.GMAIL,
-                to: email,
-                subject: "OTP from Akdevp",
-                html: `Please verify your Email Address by enter this opt <br /> <strong>${otp}</strong> <br /> This otp will expire in 1 hour`
-            }
-            const saltRound = 10
-            const hashedOtp = await bcrypt.hash(otp,saltRound)
-            const newOtpVerify = new VerifyEmail({
-                userId: user._id,
-                otp: hashedOtp,
-                createdat: Date.now(),
-                expire: Date.now()+ 3600000,
-            })
+            await newUser.save()  
             
-            await newOtpVerify.save()
-             transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    return  NextResponse.json({message:"unsuccess uploaded",success: false})
-              }
-              return  NextResponse.json({message:"unsuccess uploaded",success: false})
-            })
-          
             return NextResponse.json({
                 success: true,
                 message: "You have created your account. Please Login",
