@@ -25,7 +25,7 @@ const router = useRouter()
                 })
             })
             const response = await res.json();
-            response.success === true && router.push(encodeURI(`/verifyotp/${response.data.id}`))
+            response.success === true && router.push(encodeURI(`/login`))
             if (response.success === false) {
                toast.error(response.message, {
                 theme: "dark",

@@ -10,23 +10,12 @@ export const POST = async(request)=>{
     if (exacUser) {
         const matchPass = bcrypt.compareSync(password, exacUser.password)
         if (matchPass) {
-           if (exacUser.verified) {
-            console.log(exacUser);
             return NextResponse.json({
                 user: exacUser,
                 status: 200,
                 success: true
             }) 
-           }else{
-            await User.deleteMany({email: email})
-            return NextResponse.json({
-                message: 'Please Sign-in and verify your Email',
-                status: 400,
-                success: false
-            })
-           }
         }else{
-
         return NextResponse.json({
             message:"Email or Password is incorrect!",
             success: false,

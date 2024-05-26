@@ -9,7 +9,6 @@ if (session?.user?.verified) {
   )
 }
 return (
-  
     <Link href="/api/auth/signin" className="p-[2px] border-none bg-primary text-sm text-black hover:bg-primarydark font-bold rounded" title="Sign In">Sign In</Link>
      );
 }

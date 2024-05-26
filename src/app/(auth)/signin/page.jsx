@@ -1,6 +1,4 @@
 "use client"
-import { signIn } from "next-auth/react";
-import Image from "next/image";
 import Signform from "./Signform";
 import Logo from "../../../components/Logo/Logo";
 
