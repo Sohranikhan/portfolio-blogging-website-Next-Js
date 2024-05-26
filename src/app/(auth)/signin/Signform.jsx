@@ -2,6 +2,7 @@
 import {useRouter} from "next/navigation";
 import { ToastContainer, toast } from 'react-toastify';
 import SubmitBtn from'../../../components/SubmitBtn/SubmitBtn'
+import PasswordInput from "../../../components/PasswordInput/PasswordInput";
 
 const Signform = () => {
 const router = useRouter()
@@ -61,13 +62,7 @@ const router = useRouter()
             id="email"
             placeholder="Enter your email"
           />
-          <input
-            className="w-full h-9 border rounded border-slate-500 px-3 text-base bg-transparent outline-none"
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Enter your password"
-          />
+         <PasswordInput />
           <SubmitBtn text={'SignIn'} />
           <p className="text-primary-600 font-bold text-sm">
             Have an account?{" "}

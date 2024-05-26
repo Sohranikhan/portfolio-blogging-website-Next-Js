@@ -7,17 +7,18 @@ import { authOptions } from "../../utils/authOptions";
 import User from "../../models/User";
 
 const dataFetch = async() =>{
-   const {user} = await getServerSession(authOptions)
+   const session = await getServerSession(authOptions)
    try {
       await connect();
-   if (user) {
-      const cUser = await User.findOne({_id: user.id},{followers: 1})      
+   if (session?.user) {
+      const cUser = await User.findOne({_id: session?.user.id},{followers: 1})      
       const data = await Posts.find({postwriter: {$in: cUser.followers}});
       return data;
    } else {
-      const data = await Posts.find({}).sort(-1);
+      const data = await Posts.find({}).sort('-1');
       return data;
    }
+
    } catch (error) {
       return {
          success: false,
@@ -33,14 +34,14 @@ const popularBlogs = async()=>{
    } catch (error) {
       return {
          success: false,
-         error: error
+         error: error.message
       }
    }
 }
 const Blog = async() => {
    const data = await dataFetch()
    const pPosts = await popularBlogs()
-
+   console.log(data, pPosts);
 if (data.length === 0) {
    return(
    <div className="flex items-center justify-center">

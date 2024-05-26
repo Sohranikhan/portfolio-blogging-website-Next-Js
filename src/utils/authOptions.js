@@ -11,7 +11,7 @@ export const authOptions  = {
             },
             async authorize(credentials) {
                 try {
-                    const authResponse = await fetch("https://akdevp.vercel.app/api/login", {
+                    const authResponse = await fetch("http://localhost:3000/api/login", {
                         method: "POST",
                         headers: {
                           "Content-Type": "application/json",
