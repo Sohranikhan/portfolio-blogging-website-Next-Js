@@ -10,8 +10,8 @@ import UserNavBar from'../components/UserNavBar/UserNavBar'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Amir Sohail | Websit Devaloper',
-  description: 'I am full-Stack website devaloper, working form 4 years on website devalopment. I can create any type of website that you want.',
+  title: 'Akdevp | Website Design and development services provider',
+  description: 'I am Amir Sohail, full-Stack website devaloper, working form 4 years on website devalopment. I can create any type of website that you want.',
 }
 
 export default function RootLayout({ children }) {
