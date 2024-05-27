@@ -8,11 +8,11 @@ export const POST  = async (request)=>{
         const image = data.get('img')
         const bytes = await image.arrayBuffer()
         const buffer = Buffer.from(bytes)
-        const path = join(process.cwd(),'/public/images/blogImages/',image.name)
+        const path = join('/images/blogImages/',image.name)
         await writeFile(path, buffer)
         const imageName = "/images/blogImages/"+image.name
         return  NextResponse.json({message:"Successfully uploaded", url: imageName ,success: true})
     } catch (error) {
-        return NextResponse.json({message:"DataBase Error",status: 500,success: false})
+        return NextResponse.json({message:error.message,status: 500,success: false})
     }
 }
