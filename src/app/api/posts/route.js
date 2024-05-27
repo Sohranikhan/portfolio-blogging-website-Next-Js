@@ -3,7 +3,7 @@ import connect from "../../../utils/db";
 import Post from "../../../models/Post";
 import User from "../../../models/User"
 import transporter from "../../../utils/transporter";
-
+import { join } from 'path'
 export const GET  = async ()=>{
     try {
 await connect()
