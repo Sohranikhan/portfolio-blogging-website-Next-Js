@@ -12,13 +12,15 @@ const dataFetch = async() =>{
       await connect();
    if (session?.user) {
       const cUser = await User.findOne({_id: session?.user.id},{followers: 1})      
-      const data = await Posts.find({postwriter: {$in: cUser.followers}});
-      return data;
-   } else {
+      if (cUser?.followers?.length) {
+         const data = await Posts.find({postwriter: {$in: cUser?.followers}});   
+         return data;
+      }
       const data = await Posts.find({}).sort('-1');
       return data;
    }
-
+   const data = await Posts.find({}).sort('-1');
+   return data;
    } catch (error) {
       return {
          success: false,
@@ -41,7 +43,6 @@ const popularBlogs = async()=>{
 const Blog = async() => {
    const data = await dataFetch()
    const pPosts = await popularBlogs()
-   console.log(data, pPosts);
 if (data.length === 0) {
    return(
    <div className="flex items-center justify-center">
