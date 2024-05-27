@@ -19,7 +19,6 @@ const slugify =(str)=>
 
 const WritePage = () => {
   const router = useRouter();
-  const [topImage, setTopImage] = useState(null);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [econtent, setContent] = useState("");
@@ -34,26 +33,9 @@ const WritePage = () => {
  </div>
  }else{
 
-   const addFile = (e) => {
-    const body = new FormData();
-    body.append("img", e.target.files[0]);
-    fetch("/api/posts/imgupload", {
-      method: "POST",
-      body: body,
-    }).then((data) =>
-    data.json()).then((jsData) => {
-        if (jsData.success === true) {
-          toast.success(jsData.message);
-          setContent(
-            (prev) =>
-            `${prev} <br /> \n <Image src="${jsData.url}" width="800" height="400" alt="${e.target.files[0].name}" className="w-[100%] h-auto object-cover" />`
-          );
-        } else toast.error(jsData.message);
-      });
-    };
+   
   const handleImage = (e) => {
     if (e.target.files[0]) {
-      setTopImage(e.target.files[0]);
       imageRef.current.innerHTML = `<Image src="${URL.createObjectURL(
         e.target.files[0]
       )}" width='800' height="400" alt="Top image" className="w-[100%] h-[400px] object-cover" />`;
@@ -66,16 +48,11 @@ const WritePage = () => {
     const formData = new FormData();
     
     if (
-      topImage !== "" &&
       title !== "" &&
       desc !== "" &&
       econtent !== "" &&
-      slug !== "" &&
-      topImage !== null
-    ) {
+      slug !== "") {
       try {
-        
-        formData.append("topImage", topImage);
         formData.append("title", title);
         formData.append("desc", desc);
         formData.append("slug", slug);
@@ -106,6 +83,7 @@ const WritePage = () => {
   };
   return (
     <div className="w-full min-h-[100vh] mt-8">
+      <p>top images will not upload to vercel</p>
       {/* title */}
       <BlogHead
         title={title}
@@ -117,7 +95,7 @@ const WritePage = () => {
       {/* Description */}
       <Description desc={desc} setDesc={setDesc} />
       {/* Editor Options */}
-      <EditorOpt addFile={addFile} />
+      {/* <EditorOpt addFile={addFile} /> */}
 
       <ReactQuill econtent={econtent} setContent={setContent} />
 

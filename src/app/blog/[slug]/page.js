@@ -59,17 +59,14 @@ const BlogPost = async ({ params }) => {
     return (
 
         <div className="w-full">
-            <div className="singleBlog flex lg:flex-row flex-col lg:items-center lg:justify-center gap-12 my-12">
-                <div className="singlecontent flex-1 flex flex-col gap-5">
+            <div className="singleBlog flex lg:flex-row flex-col my-12">
+                <div className="singlecontent flex flex-col gap-5">
                     <h1 className="lg:text-5xl text-4xl font-bold my-3">{blgData?.title}</h1>
                     <p className="text-xl">{blgData?.desc}</p>
                     <Link href={`/user/${blgData?.postwriter?._id}`} className="author flex items-center gap-4">
                     {blgData?.postwriter?.image ? <Image src={blgData?.postwriter?.image} width="40" height="40" priority="medium" className="rounded-[50%] object-cover" alt={blgData.postwriter.name} /> : <Image src="/images/user.webp" width="40" height="40" priority="medium" alt={blgData.postwriter.name} className="rounded-[50%] object-cover"  /> }
                         <span>{blgData?.postwriter?.name}</span>
                     </Link>
-                </div>
-                <div className="imageContainer flex-1 h-auto max-h-[450px] overflow-hidden">
-                    <Image src={blgData?.img} width="500" height="400" alt="Single Work Image" className="w-full h-auto max-h-[450px] object-cover" />
                 </div>
             </div>
 

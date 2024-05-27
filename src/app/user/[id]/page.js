@@ -15,7 +15,7 @@ const getUser = async (id) => {
         const user = await User.findOne({ _id: id },{password:0}).populate({
             path: 'posts',
             model: 'blogpost',
-            select: ['img','title','likes','slug'],
+            select: ['img','title','likes','slug','desc'],
         }).populate({
             path: 'followers',
             model: 'portuser',
@@ -84,9 +84,9 @@ const page = async ({ params }) => {
                                 <Link href={`/blog/${post?.slug}`} className='w-full flex flex-col gap-3'>
                                 <div className="flex-[1] overflow-hidden">
                                     <h2 className='text-xl font-medium '>{post?.title}</h2>
+                                    <p className='text-base'>{post?.desc}</p>
                                 </div>
                                 <div className="relative w-full h-auto max-h-[36rem] flex-[1]">
-                                    <Image src={post?.img} alt={post?.title} width={500} height={300} className='w-full h-full' />
                                     <p className='absolute top-2 right-2 p-2 text-white bg-[#06000084] rounded'>{post?.likes?.length} ❤️</p>
                                 </div>
                                 </Link>
