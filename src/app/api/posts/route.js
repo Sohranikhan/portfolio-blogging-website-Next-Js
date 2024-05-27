@@ -33,7 +33,7 @@ export const POST  = async (request)=>{
         
         const randomId = Math.floor(Math.random()*9999)
         const imageName = randomId+image.name
-        const path = join(process.cwd(),'/public/images/blogImages/',imageName)
+        const path = join('/public/images/blogImages/',imageName)
         await writeFile(path, buffer)
         const blogData = new Post({
             img: "/images/blogImages/"+imageName,
