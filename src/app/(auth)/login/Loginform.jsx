@@ -13,7 +13,6 @@ const LoginForm = ({callBack, setlogin}) => {
             const password = e.target[1].value
             try {
                  const data = await signIn("credentials",{email,password ,redirec: false })
-                  console.log(data);
                        if (res.status === 200) {
                          router.push(`https://akdevp.vercel.app/${callBack}`,'page'); 
                          setlogin && setlogin(false)
