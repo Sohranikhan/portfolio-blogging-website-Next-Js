@@ -1,6 +1,6 @@
 "use client"
 import Signform from "./Signform";
-import Logo from "../../../components/Logo/Logo";
+import Image from "next/image";
 
 const SignIn = () => {
 
@@ -10,7 +10,7 @@ const SignIn = () => {
         <h2 className="w-full py-1 text-center text-3xl font-extrabold">
         Please SignIn to  
         </h2>
-<Logo />
+        <Image src='/logo/profile.webp' width={120} height={45} className="w-32 h-11" alt='Akdevp cover logo' />
 {/* form component */}
 <Signform />
         

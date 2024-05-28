@@ -9,11 +9,8 @@ const PostsData = ({data}) => {
   return (
     <>
           <div className="w-full flex items-center justify-between">
-            <Link href={'blog/' + data?.slug} className="flex md:flex-row flex-col gap-2 " key={data?._id}>
-              <div className="blogImage w-auto h-auto">
-                <Image src={data?.img} width="80" height="80" priority="medium" className="object-cover w-auto h-auto" alt={data?.title} />
-              </div>
-              <div className="blogContent md:max-w-[70%]">
+            <Link href={'blog/' + data?.slug} className="flex flex-col gap-2 " key={data?._id}>
+              <div className="blogContent w-full">
                 <h2 className=" mb-4 text-xl font-bold">{data?.title.slice(0, 40)}</h2>
               </div>
               <p>❤️  </p>

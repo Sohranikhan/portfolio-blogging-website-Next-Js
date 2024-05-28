@@ -32,7 +32,10 @@ if (data?.users < 1) {
               <span>Posts: {data?.posts?.length}</span>
             </div>
         <div className="opt flex items-center gap-2">
-           <DeleteBtn id={`${data._id}`} path={'/dashboard'} handler={deleteUser} />
+          {`${data._id}` !== id ?
+            <DeleteBtn id={`${data._id}`} path={'/dashboard'} handler={deleteUser} />
+            : <div className=""></div>
+          }
         </div>
               </div>
               

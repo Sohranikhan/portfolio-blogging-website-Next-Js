@@ -4,16 +4,20 @@ import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from 'react-toastify';
 import SubmitBtn from "../../../components/SubmitBtn/SubmitBtn";
 import PasswordInput from "../../../components/PasswordInput/PasswordInput"
-
+import { useState } from "react";
 const LoginForm = ({callBack, setlogin}) => {
+const [loading, setloading] = useState(false)
   const router = useRouter()     
         const handleSubmit = async(e) =>{
             e.preventDefault()
             const email = e.target[0].value
             const password = e.target[1].value
             try {
-                 const data = await signIn("credentials",{email,password ,redirec: false })
+              if (email !=='' && password !== '') {
+                setloading(true)
+                  await signIn("credentials",{email,password ,redirec: false })
                        if (res.status === 200) {
+                         setloading(false)
                          router.push(`https://akdevp.vercel.app/${callBack}`,'page'); 
                          setlogin && setlogin(false)
                          return
@@ -27,8 +31,18 @@ const LoginForm = ({callBack, setlogin}) => {
                         progress: undefined,
                         theme: "dark",
                         });
-                 }
-             
+                      }else{
+                        toast.error('Please Enter fill form!', {
+                          autoClose: 2000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                          theme: "dark",
+                          });
+                      }
+              }
            catch (error) {
               toast.error(error, {
                 autoClose: 2000,
@@ -51,7 +65,7 @@ const LoginForm = ({callBack, setlogin}) => {
             placeholder="Enter your email"
           />
          <PasswordInput />
-          <SubmitBtn text={'SignIn'} />
+          <SubmitBtn text={'SignIn'} loading={loading} />
           <p className="text-primary-600 font-bold text-sm">
             Don not have an account?{" "}
             <a href="/signin" className=" text-pink-500 font-bold">

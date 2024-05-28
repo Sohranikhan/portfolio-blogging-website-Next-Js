@@ -3,8 +3,10 @@ import {useRouter} from "next/navigation";
 import { ToastContainer, toast } from 'react-toastify';
 import SubmitBtn from'../../../components/SubmitBtn/SubmitBtn'
 import PasswordInput from "../../../components/PasswordInput/PasswordInput";
+import { useState } from "react";
 
 const Signform = () => {
+const [loading, setloading] = useState(false)
 const router = useRouter()
     const handleSubmit = async(e) =>{
         e.preventDefault()
@@ -13,7 +15,7 @@ const router = useRouter()
         const password = e.target[2].value
         try {
           if (name != '' && email != '' && password != '' && password.length > 5) {
-            
+            setloading(true)
             const res= await fetch("/api/signin",{
                 method: "POST",
                 headers:{
@@ -26,9 +28,11 @@ const router = useRouter()
                 })
             })
             const response = await res.json();
-            response.success === true && router.push(encodeURI(`/login`))
-            if (response.success === false) {
-               toast.error(response.message, {
+            if (response.success === true) {
+              setloading(false)
+              router.push(encodeURI(`/login`)) 
+            }else{
+              toast.error(response.message, {
                 theme: "dark",
                 });
             }
@@ -63,7 +67,7 @@ const router = useRouter()
             placeholder="Enter your email"
           />
          <PasswordInput />
-          <SubmitBtn text={'SignIn'} />
+          <SubmitBtn text={'SignIn'} loading={loading} />
           <p className="text-primary-600 font-bold text-sm">
             Have an account?{" "}
             <a href="/api/auth/signin" className=" text-pink-500 font-bold">

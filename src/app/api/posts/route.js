@@ -43,7 +43,7 @@ export const POST  = async (request)=>{
 
   const mailOptions = {
     from: process.env.GMAIL,
-    to: emails.join(', '),
+    to: emails?.join(', '),
     subject: title,
     html: `
     <a href='blog/${blogData.slug}' style='text-decoration: none;'>

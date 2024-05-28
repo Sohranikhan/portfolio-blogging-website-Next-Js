@@ -1,5 +1,5 @@
+import Image from "next/image";
 import LoginForm from "./Loginform";
-import Logo from '../../../components/Logo/Logo'
 const Login =  () => {
   return (
     <div className=" h-auto min-h-[34rem] flex items-center justify-center">
@@ -7,7 +7,7 @@ const Login =  () => {
         <h2 className="w-full py-1 my-3 text-center text-3xl font-extrabold">
         Please Login to 
         </h2>
-        <Logo />
+        <Image src='/logo/profile.webp' width={120} height={45} className="w-32 h-11" alt='Akdevp cover logo' />
         <LoginForm callBack='/' />
       </div>
     </div>

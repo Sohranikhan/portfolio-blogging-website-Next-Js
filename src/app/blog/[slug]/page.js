@@ -6,9 +6,10 @@ import {WhatsappShareBtn , FacebookShareBtn, TwitterShareBtn } from "../../../co
 import PdfButton from '../../../components/PdfButton/PdfButton.jsx'
 import Comment from "../../../models/Comments";
 import CommentForm from "../../../components/CommentForm/CommentForm";
-import User from "../../../models/User.js";
+import User from "../../../models/User";
 import LikeBtn from '../../../components/LikeBtn/LikeBtn'
 import Link from "next/link";
+
 await connect()
 
 import hljs from 'highlight.js';
